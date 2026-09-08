@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Rate Helper</title>
+<style>
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background-color: #fafafa;
+    color: #2b2b2b;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 20px;
+    line-height: 1.5;
+  }
+  h1 {
+    font-size: 1.6em;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    color: #666;
+    margin-top: 0;
+    margin-bottom: 24px;
+  }
+  .baseline {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 28px;
+  }
+  .baseline p {
+    margin: 4px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 28px;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #f0f0f0;
+    font-weight: normal;
+    color: #444;
+  }
+  .best-bank {
+    font-weight: bold;
+  }
+  .result {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 16px 18px;
+    margin-bottom: 28px;
+  }
+  .result p {
+    margin: 0;
+  }
+  footer {
+    font-size: 0.85em;
+    color: #888;
+    border-top: 1px solid #ddd;
+    padding-top: 14px;
+  }
+</style>
+</head>
+<body>
+
+  <h1>Currency Rate Helper</h1>
+  <p class="subtitle">Comparing Canadian bank exchange rates for USD</p>
+
+  <div class="baseline">
+    <p><strong>Date:</strong> September 8, 2026</p>
+    <p><strong>Bank of Canada baseline rate (USD to CAD):</strong> 1.3784</p>
+    <p style="color:#777; font-size:0.9em; margin-top:8px;">
+      This is the official reference rate. Banks set their own buy and sell
+      rates around it, which is why their offers differ.
+    </p>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Bank</th>
+        <th>Buy Rate (bank pays you)</th>
+        <th>Sell Rate (bank charges you)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="best-bank">TD</td>
+        <td class="best-bank">1.34</td>
+        <td>1.41</td>
+      </tr>
+      <tr>
+        <td>CIBC</td>
+        <td>1.33</td>
+        <td>1.40</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="result">
+    <p>
+      <strong>If you are selling US dollars to the bank:</strong>
+      TD offers the better deal, paying you $1.34 CAD per US dollar,
+      one cent more than CIBC's $1.33.
+    </p>
+  </div>
+
+  <footer>
+    <p>
+      This page uses test data from today's manual check and is a
+      placeholder. Real, live bank rates will replace this once the
+      rate-fetching agent is expanded to check bank rates automatically
+      each day.
+    </p>
+  </footer>
+
+</body>
+</html>
