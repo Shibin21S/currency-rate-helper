@@ -1,0 +1,289 @@
+/* Currency Rate Helper — shared site styles */
+
+:root {
+  --navy: #1E2761;
+  --ice: #CADCFC;
+  --ice-tint: #F3F7FE;
+  --terracotta: #B85042;
+  --text: #26314F;
+  --text-muted: #5B6788;
+  --border: #E3EAF7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #ffffff;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- Top navigation ---------- */
+
+.topbar {
+  background-color: var(--navy);
+}
+
+.topbar-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05em;
+  letter-spacing: 0.2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  color: var(--ice);
+  text-decoration: none;
+  font-size: 0.94em;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ffffff;
+  border-bottom-color: var(--terracotta);
+}
+
+/* ---------- Page shell ---------- */
+
+.page {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 24px 56px;
+}
+
+.page.narrow {
+  max-width: 680px;
+}
+
+h1 {
+  color: var(--navy);
+  font-size: 1.7em;
+  margin: 0 0 4px;
+}
+
+h2 {
+  color: var(--navy);
+  font-size: 1.2em;
+  margin: 0 0 10px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin: 0 0 28px;
+}
+
+/* ---------- Cards / notice box ---------- */
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(30, 39, 97, 0.06);
+}
+
+.notice {
+  background-color: var(--ice-tint);
+  border-left: 4px solid var(--navy);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+}
+
+.notice p {
+  margin: 4px 0;
+  font-size: 0.95em;
+}
+
+.notice strong {
+  color: var(--navy);
+}
+
+/* ---------- Table ---------- */
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88em;
+  background-color: #ffffff;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px 10px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+thead th {
+  background-color: var(--navy);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.85em;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--ice-tint);
+}
+
+.currency-cell {
+  font-weight: 600;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.currency-symbol {
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.baseline-cell {
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.est-tag {
+  color: var(--text-muted);
+  font-size: 0.82em;
+  font-weight: 400;
+}
+
+.bank-pill {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 0.68em;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+
+.rate-values {
+  white-space: nowrap;
+}
+
+td.winner {
+  background-color: var(--ice-tint);
+  border-left: 3px solid var(--navy);
+}
+
+.best-deal-badge {
+  display: inline-block;
+  background-color: var(--terracotta);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.82em;
+  padding: 5px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.table-note {
+  color: var(--text-muted);
+  font-size: 0.85em;
+  margin: 0 0 28px;
+}
+
+/* ---------- Static content pages ---------- */
+
+.prose p {
+  margin: 0 0 16px;
+}
+
+.faq-item {
+  padding: 16px 20px;
+  margin-bottom: 14px;
+}
+
+.faq-item h2 {
+  font-size: 1.02em;
+  margin-bottom: 8px;
+}
+
+.faq-item p {
+  margin: 0;
+  color: var(--text);
+}
+
+.team-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.team-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.team-initial {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--navy);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-top: 12px;
+}
+
+footer p {
+  margin: 4px 0;
+}

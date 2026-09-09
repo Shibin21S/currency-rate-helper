@@ -4,84 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Currency Rate Helper</title>
-<style>
-  body {
-    font-family: Georgia, 'Times New Roman', serif;
-    background-color: #fafafa;
-    color: #2b2b2b;
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-    line-height: 1.5;
-  }
-  h1 {
-    font-size: 1.6em;
-    margin-bottom: 4px;
-  }
-  .subtitle {
-    color: #666;
-    margin-top: 0;
-    margin-bottom: 24px;
-  }
-  .notice {
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 14px 18px;
-    margin-bottom: 28px;
-  }
-  .notice p {
-    margin: 4px 0;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 16px;
-    font-size: 0.92em;
-  }
-  th, td {
-    text-align: left;
-    padding: 10px 10px;
-    border-bottom: 1px solid #ddd;
-    vertical-align: top;
-  }
-  th {
-    background-color: #f0f0f0;
-    font-weight: normal;
-    color: #444;
-  }
-  .baseline-cell {
-    font-weight: bold;
-  }
-  .est-tag {
-    color: #888;
-    font-size: 0.82em;
-  }
-  .winner {
-    background-color: #eef3ec;
-    font-weight: bold;
-  }
-  .best-deal {
-    font-weight: bold;
-  }
-  .table-wrap {
-    overflow-x: auto;
-  }
-  .table-note {
-    color: #777;
-    font-size: 0.85em;
-    margin-top: -4px;
-    margin-bottom: 28px;
-  }
-  footer {
-    font-size: 0.85em;
-    color: #888;
-    border-top: 1px solid #ddd;
-    padding-top: 14px;
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">Currency Rate Helper</a>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
 
   <h1>Currency Rate Helper</h1>
   <p class="subtitle">Best Deals across TD, CIBC, RBC, Scotiabank, and BMO</p>
@@ -115,54 +54,129 @@
     </thead>
     <tbody>
       <tr>
-        <td>USD</td>
+        <td class="currency-cell">USD<span class="currency-symbol">$</span></td>
         <td class="baseline-cell">1.3798 <span class="est-tag">(as of 2026-09-09)</span></td>
-        <td class="winner">Buy 1.4162 / Sell 1.3434 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.4212 / Sell 1.3384 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.4177 / Sell 1.3419 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.4195 / Sell 1.3401 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.4177 / Sell 1.3419 <span class="est-tag">(Estimated)</span></td>
-        <td class="best-deal">TD</td>
+        <td class="winner">
+          <span class="bank-pill" style="background-color: #008A00">TD</span>
+          <div class="rate-values">Buy 1.4162 / Sell 1.3434 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #C8102E">CIBC</span>
+          <div class="rate-values">Buy 1.4212 / Sell 1.3384 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #0051A5">RBC</span>
+          <div class="rate-values">Buy 1.4177 / Sell 1.3419 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #EC111A">SB</span>
+          <div class="rate-values">Buy 1.4195 / Sell 1.3401 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #0079C1">BMO</span>
+          <div class="rate-values">Buy 1.4177 / Sell 1.3419 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td><span class="best-deal-badge">TD</span></td>
       </tr>
       <tr>
-        <td>GBP</td>
+        <td class="currency-cell">GBP<span class="currency-symbol">£</span></td>
         <td class="baseline-cell">1.8700 <span class="est-tag">(as of 2026-09-09)</span></td>
-        <td class="winner">Buy 1.9194 / Sell 1.8206 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.9261 / Sell 1.8139 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.9214 / Sell 1.8186 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.9239 / Sell 1.8161 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.9214 / Sell 1.8186 <span class="est-tag">(Estimated)</span></td>
-        <td class="best-deal">TD</td>
+        <td class="winner">
+          <span class="bank-pill" style="background-color: #008A00">TD</span>
+          <div class="rate-values">Buy 1.9194 / Sell 1.8206 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #C8102E">CIBC</span>
+          <div class="rate-values">Buy 1.9261 / Sell 1.8139 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #0051A5">RBC</span>
+          <div class="rate-values">Buy 1.9214 / Sell 1.8186 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #EC111A">SB</span>
+          <div class="rate-values">Buy 1.9239 / Sell 1.8161 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #0079C1">BMO</span>
+          <div class="rate-values">Buy 1.9214 / Sell 1.8186 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td><span class="best-deal-badge">TD</span></td>
       </tr>
       <tr>
-        <td>EUR</td>
+        <td class="currency-cell">EUR<span class="currency-symbol">€</span></td>
         <td class="baseline-cell">1.6058 <span class="est-tag">(as of 2026-09-09)</span></td>
-        <td class="winner">Buy 1.6482 / Sell 1.5634 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.6540 / Sell 1.5576 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.6500 / Sell 1.5616 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.6520 / Sell 1.5596 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.6500 / Sell 1.5616 <span class="est-tag">(Estimated)</span></td>
-        <td class="best-deal">TD</td>
+        <td class="winner">
+          <span class="bank-pill" style="background-color: #008A00">TD</span>
+          <div class="rate-values">Buy 1.6482 / Sell 1.5634 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #C8102E">CIBC</span>
+          <div class="rate-values">Buy 1.6540 / Sell 1.5576 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #0051A5">RBC</span>
+          <div class="rate-values">Buy 1.6500 / Sell 1.5616 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #EC111A">SB</span>
+          <div class="rate-values">Buy 1.6520 / Sell 1.5596 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #0079C1">BMO</span>
+          <div class="rate-values">Buy 1.6500 / Sell 1.5616 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td><span class="best-deal-badge">TD</span></td>
       </tr>
       <tr>
-        <td>JPY</td>
+        <td class="currency-cell">JPY<span class="currency-symbol">¥</span></td>
         <td class="baseline-cell">0.008990 <span class="est-tag">(as of 2026-09-09)</span></td>
-        <td class="winner">Buy 0.009227 / Sell 0.008753 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 0.009260 / Sell 0.008720 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 0.009237 / Sell 0.008743 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 0.009249 / Sell 0.008731 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 0.009237 / Sell 0.008743 <span class="est-tag">(Estimated)</span></td>
-        <td class="best-deal">TD</td>
+        <td class="winner">
+          <span class="bank-pill" style="background-color: #008A00">TD</span>
+          <div class="rate-values">Buy 0.009227 / Sell 0.008753 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #C8102E">CIBC</span>
+          <div class="rate-values">Buy 0.009260 / Sell 0.008720 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #0051A5">RBC</span>
+          <div class="rate-values">Buy 0.009237 / Sell 0.008743 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #EC111A">SB</span>
+          <div class="rate-values">Buy 0.009249 / Sell 0.008731 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #0079C1">BMO</span>
+          <div class="rate-values">Buy 0.009237 / Sell 0.008743 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td><span class="best-deal-badge">TD</span></td>
       </tr>
       <tr>
-        <td>INR</td>
+        <td class="currency-cell">INR<span class="currency-symbol">₹</span></td>
         <td class="baseline-cell">0.014510 <span class="est-tag">(as of 2026-09-09)</span></td>
-        <td class="winner">Buy 0.014893 / Sell 0.014127 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 0.014945 / Sell 0.014075 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 0.014909 / Sell 0.014111 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 0.014928 / Sell 0.014092 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 0.014909 / Sell 0.014111 <span class="est-tag">(Estimated)</span></td>
-        <td class="best-deal">TD</td>
+        <td class="winner">
+          <span class="bank-pill" style="background-color: #008A00">TD</span>
+          <div class="rate-values">Buy 0.014893 / Sell 0.014127 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #C8102E">CIBC</span>
+          <div class="rate-values">Buy 0.014945 / Sell 0.014075 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #0051A5">RBC</span>
+          <div class="rate-values">Buy 0.014909 / Sell 0.014111 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #EC111A">SB</span>
+          <div class="rate-values">Buy 0.014928 / Sell 0.014092 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td>
+          <span class="bank-pill" style="background-color: #0079C1">BMO</span>
+          <div class="rate-values">Buy 0.014909 / Sell 0.014111 <span class="est-tag">(Estimated)</span></div>
+        </td>
+        <td><span class="best-deal-badge">TD</span></td>
       </tr>
     </tbody>
   </table>
@@ -192,6 +206,8 @@
       workflow.
     </p>
   </footer>
+
+</main>
 
 </body>
 </html>

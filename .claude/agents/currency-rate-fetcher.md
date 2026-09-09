@@ -47,15 +47,20 @@ markup percentage.
    skill, so it can run its full Stage 0 through Stage 4 logic.
 
 ## Output
-Regenerate `index.html` in the project root as a "Best Deals" table:
-one row per currency (USD, GBP, EUR, JPY, INR), one column per bank
-showing that bank's estimated buy/sell rate, and a highlighted column
-showing the best-deal bank for that currency. Every bank-specific number
-must be visibly labeled "Estimated" in the table itself — not only in a
-banner — and the page must state plainly, near the top, that the Bank of
-Canada baseline is live real data while bank-specific rates are estimated
-from each bank's published markup because their sites use JavaScript
-calculators that can't be scraped.
+Regenerate `index.html` **only** in the project root as a "Best Deals"
+table: one row per currency (USD, GBP, EUR, JPY, INR), one column per
+bank showing that bank's estimated buy/sell rate, and a highlighted
+column showing the best-deal bank for that currency. Every bank-specific
+number must be visibly labeled "Estimated" in the table itself — not
+only in a banner — and the page must state plainly, near the top, that
+the Bank of Canada baseline is live real data while bank-specific rates
+are estimated from each bank's published markup because their sites use
+JavaScript calculators that can't be scraped.
+
+`about.html`, `faq.html`, and `contact.html` are static pages maintained
+manually and are outside this agent's responsibility — never generate,
+edit, overwrite, or otherwise touch them. This agent's file scope is
+limited to `index.html`.
 
 ## Notes
 - The Bank of Canada baseline is the only number ever treated as live.

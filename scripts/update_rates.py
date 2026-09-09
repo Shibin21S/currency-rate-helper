@@ -26,6 +26,25 @@ BANKS = [
     ("BMO", 0.0275),
 ]
 
+# Presentation-only data: each bank's real public brand color and a short
+# initialism, used for a small colored pill next to its rates. This is not
+# their logo or any trademarked artwork, just their brand color.
+BANK_STYLE = {
+    "TD": {"color": "#008A00", "initials": "TD"},
+    "CIBC": {"color": "#C8102E", "initials": "CIBC"},
+    "RBC": {"color": "#0051A5", "initials": "RBC"},
+    "Scotiabank": {"color": "#EC111A", "initials": "SB"},
+    "BMO": {"color": "#0079C1", "initials": "BMO"},
+}
+
+CURRENCY_SYMBOLS = {
+    "USD": "$",
+    "GBP": "£",
+    "EUR": "€",
+    "JPY": "¥",
+    "INR": "₹",
+}
+
 VALET_URL = "https://www.bankofcanada.ca/valet/observations/FX{code}CAD/json?recent=1"
 
 
@@ -77,16 +96,23 @@ def build_row(currency, info):
     cell_html = ""
     for bank, buy, sell in cells:
         class_attr = ' class="winner"' if bank == best_bank else ""
+        style = BANK_STYLE[bank]
         cell_html += (
-            f'        <td{class_attr}>Buy {format_rate(buy, currency)} / '
+            f'        <td{class_attr}>\n'
+            f'          <span class="bank-pill" style="background-color: {style["color"]}">'
+            f'{style["initials"]}</span>\n'
+            f'          <div class="rate-values">Buy {format_rate(buy, currency)} / '
             f'Sell {format_rate(sell, currency)} '
-            f'<span class="est-tag">(Estimated)</span></td>\n'
+            f'<span class="est-tag">(Estimated)</span></div>\n'
+            f'        </td>\n'
         )
 
+    symbol = CURRENCY_SYMBOLS.get(currency, "")
+
     return f"""      <tr>
-        <td>{currency}</td>
+        <td class="currency-cell">{currency}<span class="currency-symbol">{symbol}</span></td>
         <td class="baseline-cell">{baseline_str} <span class="est-tag">(as of {info['date']})</span></td>
-{cell_html}        <td class="best-deal">{best_bank}</td>
+{cell_html}        <td><span class="best-deal-badge">{best_bank}</span></td>
       </tr>"""
 
 
@@ -96,84 +122,23 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Currency Rate Helper</title>
-<style>
-  body {{
-    font-family: Georgia, 'Times New Roman', serif;
-    background-color: #fafafa;
-    color: #2b2b2b;
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-    line-height: 1.5;
-  }}
-  h1 {{
-    font-size: 1.6em;
-    margin-bottom: 4px;
-  }}
-  .subtitle {{
-    color: #666;
-    margin-top: 0;
-    margin-bottom: 24px;
-  }}
-  .notice {{
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 14px 18px;
-    margin-bottom: 28px;
-  }}
-  .notice p {{
-    margin: 4px 0;
-  }}
-  table {{
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 16px;
-    font-size: 0.92em;
-  }}
-  th, td {{
-    text-align: left;
-    padding: 10px 10px;
-    border-bottom: 1px solid #ddd;
-    vertical-align: top;
-  }}
-  th {{
-    background-color: #f0f0f0;
-    font-weight: normal;
-    color: #444;
-  }}
-  .baseline-cell {{
-    font-weight: bold;
-  }}
-  .est-tag {{
-    color: #888;
-    font-size: 0.82em;
-  }}
-  .winner {{
-    background-color: #eef3ec;
-    font-weight: bold;
-  }}
-  .best-deal {{
-    font-weight: bold;
-  }}
-  .table-wrap {{
-    overflow-x: auto;
-  }}
-  .table-note {{
-    color: #777;
-    font-size: 0.85em;
-    margin-top: -4px;
-    margin-bottom: 28px;
-  }}
-  footer {{
-    font-size: 0.85em;
-    color: #888;
-    border-top: 1px solid #ddd;
-    padding-top: 14px;
-  }}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">Currency Rate Helper</a>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
 
   <h1>Currency Rate Helper</h1>
   <p class="subtitle">Best Deals across TD, CIBC, RBC, Scotiabank, and BMO</p>
@@ -235,6 +200,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       workflow.
     </p>
   </footer>
+
+</main>
 
 </body>
 </html>

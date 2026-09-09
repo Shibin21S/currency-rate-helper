@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Currency Rate Helper</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">Currency Rate Helper</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="faq.html" class="active">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page narrow">
+
+  <h1>Frequently Asked Questions</h1>
+  <p class="subtitle">Plain-language answers about how this project works</p>
+
+  <div class="faq-item card">
+    <h2>How does this project work?</h2>
+    <p>
+      Every day, an automated script fetches the real, live Bank of Canada
+      baseline exchange rate for five currencies (USD, GBP, EUR, JPY, INR)
+      and uses it to estimate what each of the five major Canadian banks
+      would likely charge. It then highlights which bank offers the best
+      estimated deal for each currency.
+    </p>
+  </div>
+
+  <div class="faq-item card">
+    <h2>How are the estimated bank rates calculated?</h2>
+    <p>
+      Each bank's estimated rate is the live Bank of Canada baseline
+      multiplied by that bank's own publicly documented typical markup
+      percentage. For example, if a bank's typical markup is 2.75%, its
+      estimated buy rate is the baseline times 1.0275, and its estimated
+      sell rate is the baseline times 0.9725.
+    </p>
+  </div>
+
+  <div class="faq-item card">
+    <h2>Why are bank-specific rates estimated instead of live?</h2>
+    <p>
+      Bank websites display their exchange rates using JavaScript
+      calculators that compute the number directly in your browser. That
+      means the actual rate never exists as plain text anywhere in the
+      page — there's nothing for an automated fetch to read, confirmed
+      directly across all five banks' sites. Rather than show nothing,
+      this project uses each bank's own published markup to produce a
+      transparent, clearly-labeled estimate instead.
+    </p>
+  </div>
+
+  <div class="faq-item card">
+    <h2>How often does the data update?</h2>
+    <p>
+      Automatically, once a day, via a scheduled GitHub Actions workflow.
+      The Bank of Canada baseline shown is always real, live data from
+      that day's (or the most recent business day's) fetch.
+    </p>
+  </div>
+
+  <div class="faq-item card">
+    <h2>Why does TD often appear as the best deal?</h2>
+    <p>
+      In this model, the "best deal" is simply the bank with the lowest
+      published markup percentage — and TD's published markup is currently
+      the lowest of the five banks compared. That makes TD win across most
+      currencies by design, not because of anything specific to any single
+      currency. If a bank's published markup changes, or a bank with a
+      lower markup is added, the results will change accordingly.
+    </p>
+  </div>
+
+  <footer>
+    <p>Part of the Currency Rate Helper project.</p>
+  </footer>
+
+</main>
+
+</body>
+</html>

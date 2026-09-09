@@ -41,6 +41,12 @@ live rates aren't accessible.
 ## Scope
 Five currencies vs. CAD: **USD, GBP, EUR, JPY, INR**.
 
+## File scope
+This skill's output feeds into **`index.html` only**. `about.html`,
+`faq.html`, and `contact.html` are static pages maintained manually and
+are outside this skill's scope — never generate, edit, or otherwise
+touch them as part of this skill's process.
+
 ## Steps (run as a chain, one stage feeding the next)
 
 **Stage 0 — Organize by currency and bank**
