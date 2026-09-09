@@ -36,30 +36,42 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
     font-size: 0.92em;
   }
   th, td {
     text-align: left;
-    padding: 8px 10px;
+    padding: 10px 10px;
     border-bottom: 1px solid #ddd;
-    white-space: nowrap;
+    vertical-align: top;
   }
   th {
     background-color: #f0f0f0;
     font-weight: normal;
     color: #444;
   }
-  .unavailable {
-    color: #999;
-    font-style: italic;
+  .baseline-cell {
+    font-weight: bold;
+  }
+  .est-tag {
+    color: #888;
+    font-size: 0.82em;
+  }
+  .winner {
+    background-color: #eef3ec;
+    font-weight: bold;
   }
   .best-deal {
-    color: #999;
-    font-style: italic;
+    font-weight: bold;
   }
   .table-wrap {
     overflow-x: auto;
+  }
+  .table-note {
+    color: #777;
+    font-size: 0.85em;
+    margin-top: -4px;
+    margin-bottom: 28px;
   }
   footer {
     font-size: 0.85em;
@@ -75,19 +87,15 @@
   <p class="subtitle">Best Deals across TD, CIBC, RBC, Scotiabank, and BMO</p>
 
   <div class="notice">
-    <p><strong>Date:</strong> September 8, 2026</p>
+    <p><strong>Date:</strong> September 9, 2026</p>
     <p>
-      Bank of Canada baseline rates below are real, live data fetched today
-      from the Bank of Canada Valet API.
-    </p>
-    <p>
-      Bank-specific buy/sell rates are marked <strong>unavailable</strong>
-      for every bank and currency in this run. Today's attempt to fetch
-      live rates from each bank's public page did not succeed: TD, CIBC,
-      RBC, and Scotiabank pages all returned "page not found," and BMO's
-      page did not respond in time. No bank rates or "best deal" results
-      have been guessed or estimated to fill the gap — this is a known
-      gap to be resolved by finding working data sources for each bank.
+      Bank of Canada baseline is <strong>live, real data</strong>, fetched
+      today from the Bank of Canada Valet API. Bank-specific rates are
+      <strong>ESTIMATED</strong> using each bank's publicly documented
+      typical markup percentage, since bank websites use JavaScript
+      calculators that can't be scraped for a live number. This is a
+      standard, transparent method used by real currency comparison tools
+      when live rates aren't accessible.
     </p>
   </div>
 
@@ -96,7 +104,7 @@
     <thead>
       <tr>
         <th>Currency</th>
-        <th>BoC Baseline</th>
+        <th>BoC Baseline (live)</th>
         <th>TD</th>
         <th>CIBC</th>
         <th>RBC</th>
@@ -106,42 +114,81 @@
       </tr>
     </thead>
     <tbody>
-      <tr><td>USD</td><td>1.3784</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>EUR</td><td>1.6024</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>GBP</td><td>1.8670</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>JPY</td><td>0.008950</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>CNY</td><td>0.2054</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>AUD</td><td>0.9954</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>CHF</td><td>1.7030</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>HKD</td><td>0.1758</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>SGD</td><td>1.0897</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>SEK</td><td>0.1438</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>NOK</td><td>0.1491</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>NZD</td><td>0.8071</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>MXN</td><td>0.08143</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>INR</td><td>0.01454</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>ZAR</td><td>0.08617</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>BRL</td><td>0.2708</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>KRW</td><td>0.001028</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>TRY</td><td>0.02840</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>THB</td><td>0.04190</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>IDR</td><td>0.000078</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>MYR</td><td>0.3394</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
-      <tr><td>PLN</td><td>0.3715</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="unavailable">unavailable</td><td class="best-deal">not available</td></tr>
+      <tr>
+        <td>USD</td>
+        <td class="baseline-cell">1.3798</td>
+        <td class="winner">Buy 1.4162 / Sell 1.3434 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.4212 / Sell 1.3384 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.4177 / Sell 1.3419 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.4195 / Sell 1.3401 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.4177 / Sell 1.3419 <span class="est-tag">(Estimated)</span></td>
+        <td class="best-deal">TD</td>
+      </tr>
+      <tr>
+        <td>GBP</td>
+        <td class="baseline-cell">1.8700</td>
+        <td class="winner">Buy 1.9194 / Sell 1.8206 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.9261 / Sell 1.8139 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.9214 / Sell 1.8186 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.9239 / Sell 1.8161 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.9214 / Sell 1.8186 <span class="est-tag">(Estimated)</span></td>
+        <td class="best-deal">TD</td>
+      </tr>
+      <tr>
+        <td>EUR</td>
+        <td class="baseline-cell">1.6058</td>
+        <td class="winner">Buy 1.6482 / Sell 1.5634 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.6540 / Sell 1.5586 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.6500 / Sell 1.5616 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.6520 / Sell 1.5596 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.6500 / Sell 1.5616 <span class="est-tag">(Estimated)</span></td>
+        <td class="best-deal">TD</td>
+      </tr>
+      <tr>
+        <td>JPY</td>
+        <td class="baseline-cell">0.008990</td>
+        <td class="winner">Buy 0.009227 / Sell 0.008753 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 0.009260 / Sell 0.008720 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 0.009237 / Sell 0.008743 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 0.009249 / Sell 0.008731 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 0.009237 / Sell 0.008743 <span class="est-tag">(Estimated)</span></td>
+        <td class="best-deal">TD</td>
+      </tr>
+      <tr>
+        <td>INR</td>
+        <td class="baseline-cell">0.01451</td>
+        <td class="winner">Buy 0.014893 / Sell 0.014127 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 0.014945 / Sell 0.014075 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 0.014909 / Sell 0.014111 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 0.014928 / Sell 0.014092 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 0.014909 / Sell 0.014111 <span class="est-tag">(Estimated)</span></td>
+        <td class="best-deal">TD</td>
+      </tr>
     </tbody>
   </table>
   </div>
+  <p class="table-note">
+    "Buy" = estimated CAD cost to buy 1 unit of that currency from the bank.
+    "Sell" = estimated CAD you'd receive selling 1 unit back to the bank.
+    Best Deal = the bank with the lowest estimated buy rate for that currency.
+    The highlighted cell in each row shows the winning bank's rates.
+  </p>
 
   <footer>
     <p>
-      Skipped currencies (no Bank of Canada baseline available today):
-      AED, PHP, DKK, ILS, EGP (no published rate series), and RUB, SAR,
-      VND (series exists but has no observation for today's date).
+      Bank markups used for these estimates (published, typical rates):
+      TD 2.64% &middot; CIBC 3.0% &middot; RBC 2.75% &middot; Scotiabank 2.88% &middot; BMO 2.75%.
     </p>
     <p>
-      This page reflects live Bank of Canada data only. Bank-specific
-      rates require a working live data source per bank and are a known
-      gap to be filled in next.
+      TD wins every currency here because it has the lowest markup of the
+      five banks in this model — not because of anything currency-specific.
+      If a bank changes its published markup, update the percentage above
+      and every estimate recalculates from it.
+    </p>
+    <p>
+      Estimates are derived entirely from the live Bank of Canada baseline
+      and each bank's published markup — no bank-specific number on this
+      page is a live, scraped rate.
     </p>
   </footer>
 

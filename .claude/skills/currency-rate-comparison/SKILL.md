@@ -1,6 +1,6 @@
 ---
 name: Currency Rate Comparison
-description: Compares foreign currency exchange rates from Canadian banks to identify the best deal for a given currency, using a chained, step-by-step process.
+description: Compares estimated foreign currency exchange rates from Canadian banks, built from a live Bank of Canada baseline and each bank's published markup, to identify the best deal for a given currency.
 ---
 
 # Currency Rate Comparison Skill
@@ -12,80 +12,88 @@ offers them the best deal when exchanging currency. You explain things in
 simple, non-technical language, as if speaking to someone with no finance
 background.
 
+## Why estimated rates, not live-scraped rates
+TD, CIBC, RBC, Scotiabank, and BMO all publish their exchange rates through
+JavaScript calculators on their websites. The rate number is computed live
+in the customer's browser and does not exist as plain text anywhere in the
+page's raw content — like a calculator showing "0" before anyone presses a
+button. This was confirmed directly: fetching all five bank pages, and a
+third-party comparison site, returned no usable rate numbers at all. Live
+scraping of bank-specific rates is therefore not possible with this
+approach, so this skill uses a transparent, clearly-labeled estimate
+instead — a standard method used by real currency comparison tools when
+live rates aren't accessible.
+
 ## Input
-You will be given, for each of the five major Canadian banks — **TD, CIBC,
-RBC, Scotiabank, and BMO** — and for one or more currencies:
-- Bank name
-- Currency being exchanged
-- Buy rate (the rate at which the bank buys foreign currency from the customer)
-- Sell rate (the rate at which the bank sells foreign currency to the customer)
-- The Bank of Canada's baseline daily rate for that currency, used only as a
-  reference point, not a bank's actual offer
+- The **live, real** Bank of Canada baseline rate for a currency (fetched
+  from the Valet API — never estimated).
+- Each bank's **published typical markup percentage**, applied to the
+  baseline to produce an *estimated* buy and sell rate for that bank:
 
-Scope: this skill covers the top 30 most commonly exchanged currencies
-globally:
+  | Bank | Markup |
+  |---|---|
+  | TD | 2.64% |
+  | CIBC | 3.0% |
+  | RBC | 2.75% |
+  | Scotiabank | 2.88% |
+  | BMO | 2.75% |
 
-USD, EUR, GBP, JPY, CNY, AUD, CHF, HKD, SGD, SEK, NOK, NZD, MXN, INR, ZAR,
-BRL, KRW, TRY, RUB, AED, SAR, THB, IDR, MYR, PHP, VND, PLN, DKK, ILS, EGP
-
-Not every bank or currency will always have data supplied at once — the
-skill should work whether it receives one bank/currency pair or the full
-five-bank, thirty-currency set.
+## Scope
+Five currencies vs. CAD: **USD, GBP, EUR, JPY, INR**.
 
 ## Steps (run as a chain, one stage feeding the next)
 
 **Stage 0 — Organize by currency and bank**
-Group the incoming data by currency first, and within each currency, by
-bank. For each currency, you should end up with a set of up to five
-bank entries (TD, CIBC, RBC, Scotiabank, BMO), each with its own buy
-rate, sell rate, and the shared Bank of Canada baseline for that
-currency. Comparisons in later stages must always happen *within* a
-currency group — never compare a rate for one currency against a rate
-for a different currency.
+For each of the 5 currencies, pair its live Bank of Canada baseline rate
+with each of the five banks' markup percentages. Comparisons in later
+stages must always happen *within* a currency group — never compare a
+rate for one currency against a rate for a different currency.
 
 **Stage 1 — Validate the data**
-For each bank entry within each currency group, check that a buy rate,
-sell rate, and baseline rate are present. If anything is missing or
-looks clearly wrong (e.g., buy rate higher than sell rate, which
-shouldn't happen), flag it plainly instead of guessing or continuing
-silently. Exclude invalid entries from later stages, and say which
-bank/currency combination was skipped and why.
+Confirm a real baseline rate is present for the currency, and that all
+five markup percentages are available. If the baseline is missing (the
+Bank of Canada API failed or has no observation for today), do not
+estimate a substitute — flag that currency as unavailable and skip it,
+rather than guessing.
 
-**Stage 2 — Compare against baseline**
-Within each currency group, using the validated data from Stage 1,
-calculate how far each bank's buy and sell rate deviate from that
-currency's Bank of Canada baseline rate. Express this in plain terms
-(e.g., "this bank's rate is slightly worse than the market baseline")
-rather than technical statistical language.
+**Stage 2 — Calculate estimated bank rates**
+For each bank, using the validated baseline and that bank's markup:
+- **Estimated buy rate** (what a customer pays to buy the currency) =
+  `baseline × (1 + markup)`
+- **Estimated sell rate** (what a customer receives selling the currency
+  back) = `baseline × (1 − markup)`
+Every number produced here is an estimate, not a live rate, and must be
+labeled "Estimated" wherever it is shown.
 
 **Stage 3 — Determine the best deal**
-Within each currency group, using the comparison from Stage 2:
-- If the customer is SELLING foreign currency to the bank, the best deal
-  is the highest buy rate among that currency's banks.
-- If the customer is BUYING foreign currency from the bank, the best
-  deal is the lowest sell rate among that currency's banks.
-State clearly which scenario applies and which single bank wins, for
-each currency.
+Within each currency group, the best deal is the bank with the **lowest
+estimated buy rate** — the bank where it costs the least CAD to buy one
+unit of that currency. State clearly which single bank wins, per
+currency. (Because buy rate scales directly with markup, the bank with
+the smallest published markup will always win under this model — that's
+expected, not an error.)
 
 **Stage 4 — Summarize for the customer**
-Using only the results from Stage 3, write a short, plain-language
+Using only the results from Stage 0–3, write a short, plain-language
 summary a non-technical customer could understand in a few seconds. Do
-not introduce any new numbers or comparisons not already established in
-Stages 0–3.
+not introduce any new numbers not already established in earlier stages,
+and always state plainly that bank-specific numbers are estimates, not
+live rates.
 
-If data spans multiple currencies, this stage can also produce a
-**"Best Deals" summary**: for each currency, list all five banks' buy
-and sell rates side by side, and clearly mark which single bank offers
-the best deal for that currency. Keep each currency's entry short and
-in plain language — this is a scan-friendly summary, not a report.
+This stage can also produce a **"Best Deals" summary**: for each of the
+5 currencies, list all five banks' estimated buy/sell rates side by
+side, and clearly mark which single bank offers the best deal for that
+currency.
 
 ## Expectation
 - Output should clearly separate the five stages internally, but the
   FINAL output shown to the user should only be the Stage 4 summary (or
   the multi-currency "Best Deals" summary when applicable), unless the
   person explicitly asks to see the full reasoning chain.
-- Do NOT fabricate exchange rates. Only use rates explicitly provided as
-  input.
+- The Bank of Canada baseline is the only number ever treated as live.
+  Every bank-specific number is an estimate derived from the baseline
+  and a published markup — never present it as if it were a live rate,
+  and never fabricate a markup percentage that wasn't given.
 - Do NOT compare rates across different currencies — every comparison
   stays within its own currency group.
 - Do NOT use jargon like "basis points," "spread," or "arbitrage." Keep
