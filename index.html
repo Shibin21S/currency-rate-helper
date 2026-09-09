@@ -87,11 +87,11 @@
   <p class="subtitle">Best Deals across TD, CIBC, RBC, Scotiabank, and BMO</p>
 
   <div class="notice">
-    <p><strong>Date:</strong> September 9, 2026</p>
+    <p><strong>Last updated:</strong> September 09, 2026 (UTC)</p>
     <p>
       Bank of Canada baseline is <strong>live, real data</strong>, fetched
-      today from the Bank of Canada Valet API. Bank-specific rates are
-      <strong>ESTIMATED</strong> using each bank's publicly documented
+      automatically from the Bank of Canada Valet API. Bank-specific rates
+      are <strong>ESTIMATED</strong> using each bank's publicly documented
       typical markup percentage, since bank websites use JavaScript
       calculators that can't be scraped for a live number. This is a
       standard, transparent method used by real currency comparison tools
@@ -116,7 +116,7 @@
     <tbody>
       <tr>
         <td>USD</td>
-        <td class="baseline-cell">1.3798</td>
+        <td class="baseline-cell">1.3798 <span class="est-tag">(as of 2026-09-09)</span></td>
         <td class="winner">Buy 1.4162 / Sell 1.3434 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 1.4212 / Sell 1.3384 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 1.4177 / Sell 1.3419 <span class="est-tag">(Estimated)</span></td>
@@ -126,7 +126,7 @@
       </tr>
       <tr>
         <td>GBP</td>
-        <td class="baseline-cell">1.8700</td>
+        <td class="baseline-cell">1.8700 <span class="est-tag">(as of 2026-09-09)</span></td>
         <td class="winner">Buy 1.9194 / Sell 1.8206 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 1.9261 / Sell 1.8139 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 1.9214 / Sell 1.8186 <span class="est-tag">(Estimated)</span></td>
@@ -136,9 +136,9 @@
       </tr>
       <tr>
         <td>EUR</td>
-        <td class="baseline-cell">1.6058</td>
+        <td class="baseline-cell">1.6058 <span class="est-tag">(as of 2026-09-09)</span></td>
         <td class="winner">Buy 1.6482 / Sell 1.5634 <span class="est-tag">(Estimated)</span></td>
-        <td>Buy 1.6540 / Sell 1.5586 <span class="est-tag">(Estimated)</span></td>
+        <td>Buy 1.6540 / Sell 1.5576 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 1.6500 / Sell 1.5616 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 1.6520 / Sell 1.5596 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 1.6500 / Sell 1.5616 <span class="est-tag">(Estimated)</span></td>
@@ -146,7 +146,7 @@
       </tr>
       <tr>
         <td>JPY</td>
-        <td class="baseline-cell">0.008990</td>
+        <td class="baseline-cell">0.008990 <span class="est-tag">(as of 2026-09-09)</span></td>
         <td class="winner">Buy 0.009227 / Sell 0.008753 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 0.009260 / Sell 0.008720 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 0.009237 / Sell 0.008743 <span class="est-tag">(Estimated)</span></td>
@@ -156,7 +156,7 @@
       </tr>
       <tr>
         <td>INR</td>
-        <td class="baseline-cell">0.01451</td>
+        <td class="baseline-cell">0.014510 <span class="est-tag">(as of 2026-09-09)</span></td>
         <td class="winner">Buy 0.014893 / Sell 0.014127 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 0.014945 / Sell 0.014075 <span class="est-tag">(Estimated)</span></td>
         <td>Buy 0.014909 / Sell 0.014111 <span class="est-tag">(Estimated)</span></td>
@@ -171,7 +171,10 @@
     "Buy" = estimated CAD cost to buy 1 unit of that currency from the bank.
     "Sell" = estimated CAD you'd receive selling 1 unit back to the bank.
     Best Deal = the bank with the lowest estimated buy rate for that currency.
-    The highlighted cell in each row shows the winning bank's rates.
+    The highlighted cell in each row shows the winning bank's rates. Each
+    baseline is labeled with the date of the Bank of Canada observation it
+    came from, which may lag by a day on weekends and holidays when no new
+    rate is published.
   </p>
 
   <footer>
@@ -180,15 +183,13 @@
       TD 2.64% &middot; CIBC 3.0% &middot; RBC 2.75% &middot; Scotiabank 2.88% &middot; BMO 2.75%.
     </p>
     <p>
-      TD wins every currency here because it has the lowest markup of the
-      five banks in this model — not because of anything currency-specific.
-      If a bank changes its published markup, update the percentage above
-      and every estimate recalculates from it.
+      Estimates are derived entirely from the live Bank of Canada baseline
+      and each bank's published markup &mdash; no bank-specific number on
+      this page is a live, scraped rate.
     </p>
     <p>
-      Estimates are derived entirely from the live Bank of Canada baseline
-      and each bank's published markup — no bank-specific number on this
-      page is a live, scraped rate.
+      This page is regenerated automatically once a day by a GitHub Actions
+      workflow.
     </p>
   </footer>
 
